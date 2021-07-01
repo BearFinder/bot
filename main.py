@@ -13,7 +13,6 @@ config = configparser.ConfigParser()
 config.read("./config.ini")
 token = config["BOT"]["TOKEN"]
 address = config["SERVER"]["ADDR"]
-print(token)
 logger = logging.getLogger(__name__)
 bot = Bot(token=token)
 dp = Dispatcher(bot, storage=MemoryStorage())
@@ -31,7 +30,7 @@ async def main_bot():
     )
     logger.error("Starting bot")
     register_handlers_common(dp)
-    register_handlers_bear(dp, address, bot)
+    register_handlers_bear(dp, address)
     await set_commands(bot)
     await dp.start_polling()
 
